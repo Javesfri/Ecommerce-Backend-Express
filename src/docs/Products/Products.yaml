@@ -1,0 +1,122 @@
+paths:
+  /api/products/:
+    get:
+      summary: "Obtiene todos los Productos"
+      tags:
+        - Products
+      responses:
+        "200":
+          description: "Los productos fueron obtenidos de la base de datos"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#components/schemas/Product"
+        "500":
+          description: "Error interno del servidor, usualmente generado por una query defectuosa o un fallo de conexión con la base de datos"
+    post:
+      summary: "Añade uno o varios productos a la BDD"
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Producto añadido en la BDD
+        "500":
+          description: "Error interno del servidor, usualmente generado por una query defectuosa o un fallo de conexión con la base de datos"
+  /api/products/{pid}:
+    get:
+      summary: "Obtiene Producto dado su id"
+      tags:
+        - Products
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: Id del producto solicitado
+        schema:
+          $type: String
+      responses:
+        "200":
+          description: El producto fue obtenido de la base de datos
+          content:
+            application/json:
+              schema:
+                $ref: "#components/schemas/Product"
+        "500":
+          description: Error interno del servidor, usualmente generado por una query defectuosa o un fallo de conexión con la base de datos
+    put:
+      summary: "Modifica un producto segun su id"
+      tags:
+        - Products
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: Id del producto solicitado
+        schema:
+          $type: String
+      responses:
+        "200":
+          description: Producto Modificado
+        "500":
+          description: Error interno del servidor, usualmente generado por una query defectuosa o un fallo de conexión con la base de datos
+    delete:
+      summary: "Elimina un producto de la BDD segun si id"
+      tags:
+        - Products
+      parameters:
+      - name: pid
+        in: path
+        required: true
+        description: Id del producto solicitado
+        schema:
+          $type: String
+      responses:
+        "200":
+          description: Producto Eliminado
+        "500":
+          description: Error interno del servidor, usualmente generado por una query defectuosa o un fallo de conexión con la base de datos
+    
+
+
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado
+        title:
+          type: String
+          description: Nombre del producto
+        description:
+          type: String
+          description: Descripción del producto
+        price:
+          type: Number
+          description: Precio del producto
+        stock:
+          type: Number
+          description: Cantidad de stock del producto
+        code:
+          type: String
+          description: Codigo unico del producto
+        category:
+          type: String
+          description: Categoria del producto
+        thumbnail:
+          type: String
+          description: Enlace a la imagen miniatura del producto
+      example:
+        _id: ObjectId("12bb12bb12bb12bb12bb12bb12bb")
+        title: Computadora Gamer Gama Media
+        description: Computadora gamer gama media - 8gb de ram - Placa de video Nvidia Rtx 1080 - Procesador Intel i5 12500K - Disco SSD Saegete 980GB -Fuente XPG 680W 80 Gold Plus - Gabinete Sentey Optimus
+        price: 180000
+        stock: 7
+        code: pc1884846
+        category: Pc Armada
+        thumbnail: "https://www.ole.com.ar/images/2021/01/08/PvuKLINEe_860x575__1.jpg"
+

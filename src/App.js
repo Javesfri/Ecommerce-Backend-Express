@@ -22,7 +22,7 @@ import cors from "cors"
 const whiteList =['http://localhost:3000']
 
 const corsOptions = {
-  origin: "http://localhost:3000", // Reemplaza esto con tu origen correcto
+  origin:"", // Reemplaza esto con tu origen correcto
   credentials: true, // Esto es importante para permitir el uso de cookies
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Agrega los métodos que necesites
   allowedHeaders: "Content-Type,Authorization", // Agrega los encabezados permitidos

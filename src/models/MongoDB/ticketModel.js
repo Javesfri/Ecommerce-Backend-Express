@@ -22,6 +22,7 @@ if (mongoose.models["tickets"]) {
       type: String,
       unique: true,
       required: true,
+      index:true,
     },
     amount: {
       type: Number,

@@ -10,3 +10,12 @@ export const generateTicket = async(orderData)=>{
     }
     
 }
+
+export const getTicketByPreferenceService = async(preferenceId)=>{
+    try{
+        const ticket= await ticketModel.findOne({preference_id:preferenceId})
+        return ticket
+    }catch(error){
+        throw(error)
+    }
+}

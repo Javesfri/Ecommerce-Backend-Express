@@ -53,4 +53,9 @@ routerCheckout.get("/secret_key",(req,res) =>{
 
 routerCheckout.post("/generate_purchase_ticket",authenticate,generateTicketController)
 
+routerCheckout.post("/notification",(req,res)=>{
+  console.log(req.body)
+  res.status(200).send("ok")
+})
+
 export default routerCheckout

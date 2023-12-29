@@ -1,4 +1,4 @@
-import { generateTicket } from "../services/ticketService.js"
+import { generateTicket,getTicketByPreferenceService } from "../services/ticketService.js"
 
 export const generateTicketController = async(req,res)=>{
     const ticketObjectValidate = (ticketObject) =>{
@@ -37,4 +37,21 @@ export const generateTicketController = async(req,res)=>{
 
     }
 
-} 
+}
+
+export const getTicketByPreference = async(req,res)=>{
+    try{
+        const preferenceId=req.body;
+        const ticket = await getTicketByPreferenceService(preferenceId)
+        if(ticket)
+        res.status(200).send({staus:"success",payload:ticket})
+        else{
+            res.status(400).send({status:"error",message:"No existe Ticket"})
+        }
+
+    }catch(error){
+        res.status(400).send({status:"error",error:error})
+    }
+    
+
+}
